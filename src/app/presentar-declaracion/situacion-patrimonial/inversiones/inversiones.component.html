@@ -286,7 +286,7 @@
               <mat-label>RFC</mat-label>
               <mat-icon matPrefix>fingerprint</mat-icon>
               <input matInput #input_rfc_tercero formControlName="rfc" type="text" maxlength="13" />
-              <mat-hint align="end">{{ input_rfc_tercero.value?.length || 0 }}/13</mat-hint>
+              <!-- <mat-hint align="end">{{ input_rfc_tercero.value?.length || 0 }}/13</mat-hint> -->
             </mat-form-field>
             <mat-form-field matTooltip="{{ tooltipData.tercero }}" appearance="fill">
               <mat-label>Persona Física o Moral</mat-label>
@@ -326,7 +326,7 @@
               <mat-label>RFC</mat-label>
               <mat-icon matPrefix>fingerprint</mat-icon>
               <input matInput #input_rfc_institucion type="text" formControlName="rfc" maxlength="13" />
-              <mat-hint align="end">{{ input_rfc_institucion.value?.length || 0 }}/13</mat-hint>
+              <!-- <mat-hint align="end">{{ input_rfc_institucion.value?.length || 0 }}/13</mat-hint> -->
             </mat-form-field>
             <mat-form-field
               appearance="fill"

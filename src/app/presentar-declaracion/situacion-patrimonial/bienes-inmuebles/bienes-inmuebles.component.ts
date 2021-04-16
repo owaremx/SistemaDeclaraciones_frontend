@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, Predicate } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Apollo } from 'apollo-angular';
@@ -25,6 +25,7 @@ import { tooltipData } from '@static/tooltips/bien-inmueble';
 import { BienInmueble, BienesInmuebles, Catalogo, DeclaracionOutput } from '@models/declaracion';
 
 import { findOption, ifExistEnableFields } from '@utils/utils';
+import { Constantes } from '@app/@shared/constantes';
 
 @Component({
   selector: 'app-bienes-inmuebles',
@@ -82,6 +83,22 @@ export class BienesInmueblesComponent implements OnInit {
     this.editIndex = null;
   }
 
+  // tipoRFCRequerido(predicate: Predicate) {
+  //   return (
+  //     (formControl: FormControl) => {
+  //     if (!formControl.parent) {
+  //       return null;
+  //     }
+  //     if (predicate()) {
+  //       return Validators.compose([
+  //         Validators.pattern(Constantes.VALIDACION_RFC),
+  //         Validators.maxLength(formControl.value == "Fisica" ? 13 : 12)
+  //       ])
+  //     }
+  //     return null;
+  //   });
+  // }
+
   createForm() {
     this.bienesInmueblesForm = this.formBuilder.group({
       ninguno: [false],
@@ -108,7 +125,8 @@ export class BienesInmueblesComponent implements OnInit {
             [
               Validators.required,
               Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
+                // OMAR: SE CAMBIA LA VALIDACIÓN DE RFC YA QUE NO FUNCIONABA PARA PERSONAS MORALES, 16-04-2021
+                Constantes.VALIDACION_RFC
               ),
             ],
           ],
@@ -121,7 +139,8 @@ export class BienesInmueblesComponent implements OnInit {
             [
               Validators.required,
               Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
+                // OMAR: SE CAMBIA LA VALIDACIÓN DE RFC YA QUE NO FUNCIONABA PARA PERSONAS MORALES, 16-04-2021
+                Constantes.VALIDACION_RFC
               ),
             ],
           ],

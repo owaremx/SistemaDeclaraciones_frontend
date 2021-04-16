@@ -24,6 +24,7 @@ import Monedas from '@static/catalogos/monedas.json';
 import { tooltipData } from '@static/tooltips/adeudos';
 
 import { findOption } from '@utils/utils';
+import { Constantes } from '@app/@shared/constantes';
 
 @Component({
   selector: 'app-adeudos',
@@ -105,28 +106,12 @@ export class AdeudosComponent implements OnInit {
         tercero: this.formBuilder.group({
           tipoPersona: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
           nombreRazonSocial: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
-          rfc: [
-            '',
-            [
-              Validators.required,
-              Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-              ),
-            ],
-          ],
+          rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
         otorganteCredito: this.formBuilder.group({
           tipoPersona: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
           nombreInstitucion: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
-          rfc: [
-            '',
-            [
-              Validators.required,
-              Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-              ),
-            ],
-          ],
+          rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
         localizacionAdeudo: this.formBuilder.group({
           pais: ['MX', [Validators.required]],

@@ -490,11 +490,11 @@ export class ServidorPublicoComponent implements OnInit {
       this.isLoading = true;
 
       const declaracion = {
-        ingresos: form,
+        actividadAnualAnterior: form,
       };
 
       const result = await this.apollo
-        .mutate({
+        .mutate<DeclaracionOutput>({
           mutation: declaracionMutation,
           variables: {
             id: this.declaracionId,

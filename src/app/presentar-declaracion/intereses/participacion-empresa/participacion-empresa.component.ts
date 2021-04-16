@@ -19,6 +19,7 @@ import Sector from '@static/catalogos/sector.json';
 import { DeclaracionOutput, Participacion, Participaciones } from '@models/declaracion';
 
 import { findOption, ifExistEnableFields } from '@utils/utils';
+import { Constantes } from '@app/@shared/constantes';
 
 @Component({
   selector: 'app-participacion-empresa',
@@ -92,15 +93,7 @@ export class ParticipacionEmpresaComponent implements OnInit {
       participacion: this.formBuilder.group({
         tipoRelacion: ['', Validators.required],
         nombreEmpresaSociedadAsociacion: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
-        rfc: [
-          '',
-          [
-            Validators.required,
-            Validators.pattern(
-              /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-            ),
-          ],
-        ],
+        rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         porcentajeParticipacion: [
           0,
           [Validators.required, Validators.pattern(/^\d+\.?\d{0,2}$/), Validators.min(0), Validators.max(100)],

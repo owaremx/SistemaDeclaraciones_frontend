@@ -228,7 +228,7 @@
     </div>
 
     <!-- Formulario -->
-    <form (ngSubmit)="saveItem()" [formGroup]="bienesInmueblesForm" *ngIf="editMode">
+    <form (ngSubmit)="saveItem()" [formGroup]="bienesInmueblesForm" #biForm *ngIf="editMode">
       <!-- Agregar -->
       <div class="padding-agregar" formGroupName="bienInmueble">
         <mat-divider></mat-divider>
@@ -264,7 +264,9 @@
               </mat-select>
             </mat-form-field>
           </div>
+
           <!-- Tercero -->
+          <!-- *ngIf="bienesInmueblesForm.value.bienInmueble?.titular?.clave != 'DEC'"  -->
           <div class="grid-3-col grid-margin" formGroupName="tercero">
             <mat-radio-group matTooltip="{{ tooltipData.tercero }}" class="checkbox" formControlName="tipoPersona">
               <p class="question double-col">Tercero</p>
@@ -280,7 +282,7 @@
               <mat-label>RFC</mat-label>
               <mat-icon matPrefix>fingerprint</mat-icon>
               <input matInput #input_rfc_tercero formControlName="rfc" type="text" maxlength="13" />
-              <mat-hint align="end">{{ input_rfc_tercero.value?.length || 0 }}/13</mat-hint>
+              <!-- <mat-hint align="end">{{ input_rfc_tercero.value?.length || 0 }}/13</mat-hint> -->
             </mat-form-field>
           </div>
           <div class="grid-3-col grid-margin">
@@ -350,7 +352,7 @@
               <mat-label>RFC</mat-label>
               <mat-icon matPrefix class="no-public">fingerprint</mat-icon>
               <input matInput class="no-public" formControlName="rfc" #input_rfc type="text" maxlength="13" />
-              <mat-hint align="end">{{ input_rfc.value?.length || 0 }}/13</mat-hint>
+              <!-- <mat-hint align="end">{{ input_rfc.value?.length || 0 }}/{{ biForm == "Fisica" ? "13" : "12"}}</mat-hint> -->
             </mat-form-field>
             <mat-form-field
               matTooltip="{{ tooltipData.relacionTransmisorTitular }}"

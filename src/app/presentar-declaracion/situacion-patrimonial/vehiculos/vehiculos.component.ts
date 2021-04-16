@@ -25,6 +25,7 @@ import { tooltipData } from '@static/tooltips/vehiculos';
 import { DeclaracionOutput, Vehiculo, Vehiculos } from '@models/declaracion';
 
 import { findOption, ifExistEnableFields } from '@utils/utils';
+import { Constantes } from '@app/@shared/constantes';
 
 @Component({
   selector: 'app-vehiculos',
@@ -112,7 +113,8 @@ export class VehiculosComponent implements OnInit {
             [
               Validators.required,
               Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
+                Constantes.VALIDACION_RFC
+                // /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
               ),
             ],
           ],
@@ -130,7 +132,8 @@ export class VehiculosComponent implements OnInit {
             [
               Validators.required,
               Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
+                Constantes.VALIDACION_RFC
+                ///^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
               ),
             ],
           ],

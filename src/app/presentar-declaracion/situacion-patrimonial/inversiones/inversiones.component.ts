@@ -24,6 +24,7 @@ import { tooltipData } from '@static/tooltips/inversiones';
 
 import { DeclaracionOutput, Inversion, InversionesCuentasValores } from '@models/declaracion';
 import { findOption, ifExistEnableFields } from '@utils/utils';
+import { Constantes } from '@app/@shared/constantes';
 
 @Component({
   selector: 'app-inversiones',
@@ -103,29 +104,13 @@ export class InversionesComponent implements OnInit {
         tercero: this.formBuilder.group({
           tipoPersona: ['', [Validators.required]],
           nombreRazonSocial: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
-          rfc: [
-            '',
-            [
-              Validators.required,
-              Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-              ),
-            ],
-          ],
+          rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
         numeroCuentaContrato: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
         localizacionInversion: this.formBuilder.group({
           pais: ['', [Validators.required]],
           institucionRazonSocial: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
-          rfc: [
-            '',
-            [
-              Validators.required,
-              Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-              ),
-            ],
-          ],
+          rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
         saldoSituacionActual: this.formBuilder.group({
           valor: [0, [Validators.required, Validators.pattern(/^\d+\.?\d{0,2}$/), Validators.min(0)]],
