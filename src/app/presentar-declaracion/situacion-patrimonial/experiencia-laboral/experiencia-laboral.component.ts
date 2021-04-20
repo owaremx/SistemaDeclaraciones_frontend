@@ -20,6 +20,7 @@ import Sector from '@static/catalogos/sector.json';
 import Extranjero from '@static/catalogos/extranjero.json';
 
 import { tooltipData } from '@static/tooltips/experiencia-laboral';
+import { Constantes } from '@app/@shared/constantes';
 
 @Component({
   selector: 'app-experiencia-laboral',
@@ -142,15 +143,7 @@ export class ExperienciaLaboralComponent implements OnInit {
         ubicacion: ['', [Validators.required]],
 
         nombreEmpresaSociedadAsociacion: ['', [Validators.required]],
-        rfc: [
-          '',
-          [
-            Validators.required,
-            Validators.pattern(
-              /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-            ),
-          ],
-        ],
+        rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         area: ['', [Validators.required]],
         puesto: ['', [Validators.required]],
         sector: [{ clave: '', valor: '' }, [Validators.required]],

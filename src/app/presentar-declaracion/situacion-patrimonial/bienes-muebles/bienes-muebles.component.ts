@@ -187,11 +187,11 @@ export class BienesMueblesComponent implements OnInit {
   }
 
   async saveInfo(form: BienesMuebles) {
+    console.log(form);
     try {
       const declaracion = {
         bienesMuebles: form,
       };
-
       const { data } = await this.apollo
         .mutate<DeclaracionOutput>({
           mutation: bienesMueblesMutation,
