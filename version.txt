@@ -10,3 +10,6 @@ CAMBIOS:
 
 #  21-04-2021.2
 * Corregida la navegación en la declaración simplificada
+
+#  21-04-2021.3
+* Corregido punto 3 de intereses, en el pago si es en especie o monetario

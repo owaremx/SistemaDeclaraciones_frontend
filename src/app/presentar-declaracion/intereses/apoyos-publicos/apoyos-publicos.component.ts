@@ -89,16 +89,23 @@ export class ApoyosPublicosComponent implements OnInit {
     this.apoyosForm.get('apoyo.formaRecepcion').valueChanges.subscribe((val) => {
       if (!val) return;
 
+      console.log(val);
+
       const montoApoyo = this.apoyosForm.get('apoyo.montoApoyoMensual.valor');
       const especifiqueApoyo = this.apoyosForm.get('apoyo.especifiqueApoyo');
 
-      if (val.clave === 'MONETARIO') {
+      if (val === 'MONETARIO') {
         montoApoyo.setValidators([Validators.required, Validators.pattern(/^\d+\.?\d{0,2}$/), Validators.min(0)]);
         especifiqueApoyo.clearValidators();
+        especifiqueApoyo.setValue('');
       } else {
         montoApoyo.clearValidators();
         especifiqueApoyo.setValidators([Validators.required, Validators.pattern(/^\S.*\S?$/)]);
+        montoApoyo.setValue(0);
       }
+
+      montoApoyo.updateValueAndValidity();
+      especifiqueApoyo.updateValueAndValidity();
     });
   }
 

@@ -106,7 +106,6 @@
         <button mat-raised-button color="primary" (click)="addItem()">AGREGAR APOYO</button>
       </div>
     </div>
-
     <!-- Formulario -->
     <form (ngSubmit)="saveItem()" [formGroup]="apoyosForm" *ngIf="editMode">
       <!-- Agregar -->
@@ -181,6 +180,7 @@
             </mat-select>
           </mat-form-field>
 
+          <!--  -->
           <mat-form-field
             appearance="fill"
             formGroupName="montoApoyoMensual"
@@ -190,6 +190,8 @@
             <mat-icon matPrefix>beenhere</mat-icon>
             <input matInput type="number" formControlName="valor" min="0" />
           </mat-form-field>
+
+          <!--  -->
           <mat-form-field appearance="fill" *ngIf="apoyosForm.value.apoyo?.formaRecepcion == 'ESPECIE'">
             <mat-label>Especifique el apoyo</mat-label>
             <mat-icon matPrefix>account_balance_wallet</mat-icon>
