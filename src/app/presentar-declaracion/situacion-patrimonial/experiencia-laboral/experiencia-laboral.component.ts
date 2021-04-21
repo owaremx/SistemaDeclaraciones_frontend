@@ -327,4 +327,15 @@ export class ExperienciaLaboralComponent implements OnInit {
     }
     this.aclaraciones = value;
   }
+
+  getLinkSiguiente() {
+    const base =
+      '/' +
+      this.tipoDeclaracion +
+      '/' +
+      (this.declaracionSimplificada ? 'simplificada/' : '/') +
+      'situacion-patrimonial/';
+
+    return base + 'ingresos-netos/';
+  }
 }

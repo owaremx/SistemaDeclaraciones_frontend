@@ -371,15 +371,12 @@
 
     <mat-divider></mat-divider>
 
+    <!-- [routerLink]="'/' + tipoDeclaracion + '/situacion-patrimonial/datos-pareja'" -->
     <div class="boton center">
-      <button
-        mat-raised-button
-        color="primary"
-        [routerLink]="'/' + tipoDeclaracion + '/situacion-patrimonial/datos-pareja'"
-      >
+      <a mat-raised-button color="primary" [routerLink]="getLinkSiguiente()">
         CONTINUAR 6 DE 15
         <mat-icon matSofix>arrow_forward</mat-icon>
-      </button>
+      </a>
     </div>
 
     <section-footer [declaracionId]="declaracionId"></section-footer>

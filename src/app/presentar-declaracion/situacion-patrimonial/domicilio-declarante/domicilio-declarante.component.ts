@@ -217,4 +217,15 @@ export class DomicilioDeclaranteComponent implements OnInit {
     }
     this.aclaraciones = value;
   }
+
+  getLinkSiguiente() {
+    const base =
+      '/' +
+      this.tipoDeclaracion +
+      '/' +
+      (this.declaracionSimplificada ? 'simplificada/' : '/') +
+      'situacion-patrimonial/';
+
+    return base + 'datos-curriculares/';
+  }
 }

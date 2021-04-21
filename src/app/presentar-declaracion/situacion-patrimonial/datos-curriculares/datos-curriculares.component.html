@@ -205,12 +205,8 @@
     <mat-divider></mat-divider>
 
     <div class="boton center">
-      <button
-        mat-raised-button
-        color="primary"
-        [routerLink]="'/' + tipoDeclaracion + '/situacion-patrimonial/datos-empleo'"
-      >
-        CONTINUAR 4 DE 15
+      <button mat-raised-button color="primary" [routerLink]="getLinkSiguiente()">
+        CONTINUAR 4 DE {{ declaracionSimplificada ? '7' : '15' }}
         <mat-icon matSofix>arrow_forward</mat-icon>
       </button>
     </div>

@@ -162,14 +162,10 @@
     <mat-divider></mat-divider>
 
     <div class="boton center">
-      <button
-        mat-raised-button
-        color="primary"
-        [routerLink]="'/' + tipoDeclaracion + '/situacion-patrimonial/domicilio-declarante'"
-      >
-        CONTINUAR 2 DE 15
+      <a href="javascript:" mat-raised-button color="primary" [routerLink]="getLinkSiguiente()">
+        CONTINUAR 2 DE {{ declaracionSimplificada ? '7' : '15' }}
         <mat-icon matSofix>arrow_forward</mat-icon>
-      </button>
+      </a>
     </div>
 
     <section-footer [declaracionId]="declaracionId"></section-footer>

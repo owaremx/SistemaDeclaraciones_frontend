@@ -401,13 +401,8 @@
     </form>
 
     <div class="boton center">
-      <button
-        mat-raised-button
-        color="primary"
-        type="button"
-        [routerLink]="'/' + tipoDeclaracion + '/situacion-patrimonial/experiencia-laboral'"
-      >
-        CONTINUAR 5 DE 15
+      <button mat-raised-button color="primary" type="button" [routerLink]="getLinkSiguiente()">
+        CONTINUAR 5 DE {{ declaracionSimplificada ? '7' : '15' }}
         <mat-icon matSofix>arrow_forward</mat-icon>
       </button>
     </div>

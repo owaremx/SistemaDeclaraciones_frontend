@@ -240,4 +240,15 @@ export class DatosCurricularesComponent implements OnInit {
     }
     this.aclaraciones = value;
   }
+
+  getLinkSiguiente() {
+    const base =
+      '/' +
+      this.tipoDeclaracion +
+      '/' +
+      (this.declaracionSimplificada ? 'simplificada/' : '/') +
+      'situacion-patrimonial/';
+
+    return base + 'datos-empleo/';
+  }
 }
