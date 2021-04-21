@@ -18,6 +18,7 @@ import Extranjero from '@static/catalogos/extranjero.json';
 import { DeclaracionOutput, Fideicomiso, Fideicomisos } from '@models/declaracion';
 
 import { findOption } from '@utils/utils';
+import { Constantes } from '@app/@shared/constantes';
 
 @Component({
   selector: 'app-fideicomisos',
@@ -55,7 +56,8 @@ export class FideicomisosComponent implements OnInit {
   }
 
   addItem() {
-    this.fideicomisosForm.reset();
+    //this.fideicomisosForm.reset();
+    this.createForm();
     this.editMode = true;
     this.editIndex = null;
   }
@@ -69,55 +71,24 @@ export class FideicomisosComponent implements OnInit {
     this.fideicomisosForm = this.formBuilder.group({
       ninguno: false,
       fideicomiso: this.formBuilder.group({
-        //tipoOperacion: ['', Validators.required],
+        tipoOperacion: ['AGREGAR'],
         tipoRelacion: ['', Validators.required],
         tipoFideicomiso: ['', Validators.required],
         tipoParticipacion: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
-        rfcFideicomiso: [
-          '',
-          [
-            Validators.pattern(
-              /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-            ),
-          ],
-        ],
+        rfcFideicomiso: ['', [Validators.pattern(Constantes.VALIDACION_RFC)]],
         fideicomitente: this.formBuilder.group({
           tipoPersona: ['', Validators.required],
           nombreRazonSocial: ['', [Validators.required, Validators.pattern(/^\S.*\S$/)]],
-          rfc: [
-            '',
-            [
-              Validators.required,
-              Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-              ),
-            ],
-          ],
+          rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
         fiduciario: this.formBuilder.group({
           nombreRazonSocial: ['', [Validators.required, Validators.pattern(/^\S.*\S$/)]],
-          rfc: [
-            '',
-            [
-              Validators.required,
-              Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-              ),
-            ],
-          ],
+          rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
         fideicomisario: this.formBuilder.group({
           tipoPersona: ['', Validators.required],
           nombreRazonSocial: ['', [Validators.required, Validators.pattern(/^\S.*\S$/)]],
-          rfc: [
-            '',
-            [
-              Validators.required,
-              Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-              ),
-            ],
-          ],
+          rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
         sector: ['', [Validators.required]],
         extranjero: ['', Validators.required],
@@ -252,7 +223,8 @@ export class FideicomisosComponent implements OnInit {
   }
 
   setEditMode() {
-    this.fideicomisosForm.reset();
+    //this.fideicomisosForm.reset();
+    this.createForm();
     this.editMode = true;
     this.editIndex = null;
   }

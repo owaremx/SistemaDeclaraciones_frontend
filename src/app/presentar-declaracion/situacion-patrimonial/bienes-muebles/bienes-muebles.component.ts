@@ -64,7 +64,8 @@ export class BienesMueblesComponent implements OnInit {
   }
 
   addItem() {
-    this.bienesMueblesForm.reset();
+    //this.bienesMueblesForm.reset();
+    this.createForm();
     this.bienesMueblesForm.get('ninguno').setValue(false);
     this.editMode = true;
     this.editIndex = null;
@@ -88,7 +89,7 @@ export class BienesMueblesComponent implements OnInit {
           relacion: ['', Validators.required],
         }),
         tercero: this.formBuilder.group({
-          tipoPersona: ['', [Validators.required]],
+          tipoPersona: ['FISICA', [Validators.required]],
           nombreRazonSocial: ['', [Validators.required, Validators.pattern(/^\S.*$/)]],
           rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
@@ -103,6 +104,33 @@ export class BienesMueblesComponent implements OnInit {
         motivoBaja: { disabled: true, value: '' },
       }),
       aclaracionesObservaciones: [{ disabled: true, value: '' }, [Validators.required, Validators.pattern(/^\S.*\S$/)]],
+    });
+
+    ///////////////////////////// OMAR
+    this.bienesMueblesForm.get('bienMueble.titular').valueChanges.subscribe((val) => {
+      if (!val) return;
+
+      const razonSocial = this.bienesMueblesForm.get('bienMueble.tercero').get('nombreRazonSocial');
+      const tipoPersona = this.bienesMueblesForm.get('bienMueble.tercero').get('tipoPersona');
+      const rfc = this.bienesMueblesForm.get('bienMueble.tercero').get('rfc');
+
+      if (val.clave === 'DEC') {
+        razonSocial.clearValidators();
+        tipoPersona.clearValidators();
+        rfc.clearValidators();
+
+        razonSocial.setValue('');
+        rfc.setValue('');
+        tipoPersona.setValue('FISICA');
+      } else {
+        tipoPersona.setValidators([Validators.required]);
+        razonSocial.setValidators([Validators.required]);
+        rfc.setValidators([Validators.pattern(Constantes.VALIDACION_RFC), Validators.required]);
+      }
+
+      razonSocial.updateValueAndValidity();
+      rfc.updateValueAndValidity();
+      tipoPersona.updateValueAndValidity();
     });
   }
 
@@ -235,7 +263,8 @@ export class BienesMueblesComponent implements OnInit {
   }
 
   setEditMode() {
-    this.bienesMueblesForm.reset();
+    //this.bienesMueblesForm.reset();
+    this.createForm();
     this.bienesMueblesForm.get('ninguno').setValue(false);
     this.editMode = true;
     this.editIndex = null;

@@ -18,6 +18,7 @@ import Estados from '@static/catalogos/estados.json';
 import { Cliente, ClientesPrincipales, DeclaracionOutput } from '@models/declaracion';
 
 import { findOption, ifExistEnableFields } from '@utils/utils';
+import { Constantes } from '@app/@shared/constantes';
 
 @Component({
   selector: 'app-clientes-principales',
@@ -56,7 +57,8 @@ export class ClientesPrincipalesComponent implements OnInit {
   }
 
   addItem() {
-    this.clientesPrincipalesForm.reset();
+    //this.clientesPrincipalesForm.reset();
+    this.createForm();
     this.editMode = true;
     this.editIndex = null;
   }
@@ -87,33 +89,17 @@ export class ClientesPrincipalesComponent implements OnInit {
     this.clientesPrincipalesForm = this.formBuilder.group({
       ninguno: [false],
       cliente: this.formBuilder.group({
-        //tipoOperacion: ['', Validators.required],
+        tipoOperacion: ['AGREGAR'],
         realizaActividadLucrativa: [false, Validators.required],
         tipoRelacion: ['', Validators.required],
         empresa: this.formBuilder.group({
           nombreEmpresaServicio: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
-          rfc: [
-            '',
-            [
-              Validators.required,
-              Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-              ),
-            ],
-          ],
+          rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
         clientePrincipal: this.formBuilder.group({
           tipoPersona: ['', Validators.required],
           nombreRazonSocial: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
-          rfc: [
-            '',
-            [
-              Validators.required,
-              Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-              ),
-            ],
-          ],
+          rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
         sector: ['', [Validators.required]],
         montoAproximadoGanancia: this.formBuilder.group({
@@ -269,7 +255,8 @@ export class ClientesPrincipalesComponent implements OnInit {
   }
 
   setEditMode() {
-    this.clientesPrincipalesForm.reset();
+    //this.clientesPrincipalesForm.reset();
+    this.createForm();
     this.editMode = true;
     this.editIndex = null;
   }

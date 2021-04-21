@@ -72,7 +72,8 @@ export class VehiculosComponent implements OnInit {
   }
 
   addItem() {
-    this.vehiculosForm.reset();
+    //this.vehiculosForm.reset();
+    this.createForm();
     this.editMode = true;
     this.editIndex = null;
   }
@@ -125,7 +126,7 @@ export class VehiculosComponent implements OnInit {
         anio: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
         numeroSerieRegistro: ['', [Validators.required, Validators.pattern(/^\S.*\S$/)]],
         tercero: this.formBuilder.group({
-          tipoPersona: ['', [Validators.required]],
+          tipoPersona: ['FISICA', [Validators.required]],
           nombreRazonSocial: ['', [Validators.required, Validators.pattern(/^\S.*\S$/)]],
           rfc: [
             '',
@@ -151,6 +152,33 @@ export class VehiculosComponent implements OnInit {
         fechaAdquisicion: ['', [Validators.required]],
       }),
       aclaracionesObservaciones: [{ disabled: true, value: '' }, [Validators.required, Validators.pattern(/^\S.*\S$/)]],
+    });
+
+    ///////////////////////////// OMAR
+    this.vehiculosForm.get('vehiculo.titular').valueChanges.subscribe((val) => {
+      if (!val) return;
+
+      const razonSocial = this.vehiculosForm.get('vehiculo.tercero').get('nombreRazonSocial');
+      const tipoPersona = this.vehiculosForm.get('vehiculo.tercero').get('tipoPersona');
+      const rfc = this.vehiculosForm.get('vehiculo.tercero').get('rfc');
+
+      if (val.clave === 'DEC') {
+        razonSocial.clearValidators();
+        tipoPersona.clearValidators();
+        rfc.clearValidators();
+
+        razonSocial.setValue('');
+        rfc.setValue('');
+        tipoPersona.setValue('FISICA');
+      } else {
+        tipoPersona.setValidators([Validators.required]);
+        razonSocial.setValidators([Validators.required]);
+        rfc.setValidators([Validators.pattern(Constantes.VALIDACION_RFC), Validators.required]);
+      }
+
+      razonSocial.updateValueAndValidity();
+      rfc.updateValueAndValidity();
+      tipoPersona.updateValueAndValidity();
     });
   }
 
@@ -294,7 +322,8 @@ export class VehiculosComponent implements OnInit {
   }
 
   setEditMode() {
-    this.vehiculosForm.reset();
+    //this.vehiculosForm.reset();
+    this.createForm();
     this.editMode = true;
     this.editIndex = null;
   }

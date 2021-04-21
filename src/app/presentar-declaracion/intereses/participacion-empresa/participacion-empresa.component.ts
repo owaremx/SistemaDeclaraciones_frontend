@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '@shared/dialog/dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import Relacion from '@static/catalogos/relacionConDeclarante.json';
+import TipoRelacion from '@static/catalogos/tipoRelacion.json';
 import TipoParticipacion from '@static/catalogos/tipoParticipacion.json';
 import Extranjero from '@static/catalogos/extranjero.json';
 import Paises from '@static/catalogos/paises.json';
@@ -34,7 +34,7 @@ export class ParticipacionEmpresaComponent implements OnInit {
   participacion: Participacion[] = [];
   isLoading = false;
 
-  relacionCatalogo = Relacion;
+  relacionCatalogo = TipoRelacion;
   tipoParticipacionCatalogo = TipoParticipacion;
   extranjeroCatalogo = Extranjero;
   paisesCatalogo = Paises;
@@ -59,7 +59,8 @@ export class ParticipacionEmpresaComponent implements OnInit {
   }
 
   addItem() {
-    this.participacionForm.reset();
+    //this.participacionForm.reset();
+    this.createForm();
     this.editMode = true;
     this.editIndex = null;
   }
@@ -262,7 +263,8 @@ export class ParticipacionEmpresaComponent implements OnInit {
   }
 
   setEditMode() {
-    this.participacionForm.reset();
+    //this.participacionForm.reset();
+    this.createForm();
     this.editMode = true;
     this.editIndex = null;
   }

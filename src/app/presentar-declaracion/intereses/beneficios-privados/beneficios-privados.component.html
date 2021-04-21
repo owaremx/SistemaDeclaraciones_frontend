@@ -160,8 +160,8 @@
         <div class="grid-3-col grid-margin" formGroupName="otorgante">
           <mat-radio-group class="checkbox checkbox-height" formControlName="tipoPersona">
             <label class="question">Otorgante</label>
-            <mat-radio-button value="Fisica"><span class="no-public-inline"></span>Persona Física</mat-radio-button>
-            <mat-radio-button value="Moral">Persona Moral</mat-radio-button>
+            <mat-radio-button value="FISICA"><span class="no-public-inline"></span>Persona Física</mat-radio-button>
+            <mat-radio-button value="MORAL">Persona Moral</mat-radio-button>
           </mat-radio-group>
           <mat-form-field appearance="fill">
             <mat-label>Nombre o razón social del otorgante</mat-label>
@@ -172,7 +172,6 @@
             <mat-label>RFC</mat-label>
             <mat-icon matPrefix class="no-public">fingerprint</mat-icon>
             <input matInput #input_rfc type="text" maxlength="13" formControlName="rfc" />
-            <mat-hint align="end">{{ input_rfc.value?.length || 0 }}/13</mat-hint>
           </mat-form-field>
         </div>
 

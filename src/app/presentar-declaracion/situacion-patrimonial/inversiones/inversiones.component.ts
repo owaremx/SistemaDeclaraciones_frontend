@@ -102,7 +102,7 @@ export class InversionesComponent implements OnInit {
         subTipoInversion: ['', Validators.required],
         titular: ['', Validators.required],
         tercero: this.formBuilder.group({
-          tipoPersona: ['', [Validators.required]],
+          tipoPersona: ['FISICA', [Validators.required]],
           nombreRazonSocial: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
           rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
@@ -118,6 +118,33 @@ export class InversionesComponent implements OnInit {
         }),
       }),
       aclaracionesObservaciones: [{ disabled: true, value: '' }, [Validators.required, Validators.pattern(/^\S.*\S$/)]],
+    });
+
+    ///////////////////////////// OMAR
+    this.inversionesCuentasValoresForm.get('inversion.titular').valueChanges.subscribe((val) => {
+      if (!val) return;
+
+      const razonSocial = this.inversionesCuentasValoresForm.get('inversion.tercero').get('nombreRazonSocial');
+      const tipoPersona = this.inversionesCuentasValoresForm.get('inversion.tercero').get('tipoPersona');
+      const rfc = this.inversionesCuentasValoresForm.get('inversion.tercero').get('rfc');
+
+      if (val.clave === 'DEC') {
+        razonSocial.clearValidators();
+        tipoPersona.clearValidators();
+        rfc.clearValidators();
+
+        razonSocial.setValue('');
+        rfc.setValue('');
+        tipoPersona.setValue('FISICA');
+      } else {
+        tipoPersona.setValidators([Validators.required]);
+        razonSocial.setValidators([Validators.required]);
+        rfc.setValidators([Validators.pattern(Constantes.VALIDACION_RFC), Validators.required]);
+      }
+
+      razonSocial.updateValueAndValidity();
+      rfc.updateValueAndValidity();
+      tipoPersona.updateValueAndValidity();
     });
   }
 

@@ -253,7 +253,11 @@
           </div>
 
           <!-- Tercero -->
-          <div class="grid-3-col grid-margin" formGroupName="tercero">
+          <div
+            class="grid-3-col grid-margin"
+            formGroupName="tercero"
+            *ngIf="adeudosPasivosForm.value.adeudo?.titular?.clave != 'DEC'"
+          >
             <mat-radio-group matTooltip="{{ tooltipData.tercero }}" class="checkbox" formControlName="tipoPersona">
               <p class="question double-col">Tercero</p>
               <mat-radio-button value="FISICA"><span class="no-public-inline"></span> Persona Física</mat-radio-button>

@@ -193,9 +193,14 @@
 
           <mat-form-field appearance="fill">
             <mat-label>Fecha de inicio de participación dentro de la Institución</mat-label>
+            <input matInput [matDatepicker]="pickerAdquisicion" formControlName="fechaInicioParticipacion" />
+            <mat-hint>dd/mm/yyyy</mat-hint>
+            <mat-datepicker-toggle matPrefix [for]="pickerAdquisicion"> </mat-datepicker-toggle>
+            <mat-datepicker #pickerAdquisicion></mat-datepicker>
+            <!-- <mat-label>Fecha de inicio de participación dentro de la Institución</mat-label>
             <mat-icon matPrefix>beenhere</mat-icon>
             <input matInput type="text" placeholder="DD/MM/AAAA" formControlName="fechaInicioParticipacion" />
-            <mat-hint>dd/mm/yyyy</mat-hint>
+            <mat-hint>dd/mm/yyyy</mat-hint> -->
           </mat-form-field>
         </div>
 

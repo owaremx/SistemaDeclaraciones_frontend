@@ -61,23 +61,25 @@
 
           <p>Nombre del Tercero o Terceros</p>
           <div class="card-grid-3-col" *ngFor="let dato of m.tercero">
-            <div class="paragraph-flex">
-              <mat-icon matPrefix class="icon">person</mat-icon>
-              <p>
-                {{ dato.nombreRazonSocial }}
-              </p>
-            </div>
-            <div class="paragraph-flex">
-              <mat-icon matPrefix class="icon">fingerprint</mat-icon>
-              <p>
-                {{ dato.rfc }}
-              </p>
-            </div>
-            <div class="paragraph-flex">
-              <mat-icon matPrefix class="icon card-no-public">person</mat-icon>
-              <p>
-                {{ dato.tipoPersona }}
-              </p>
+            <div *ngIf="dato.nombreRazonSocial.length > 0">
+              <div class="paragraph-flex">
+                <mat-icon matPrefix class="icon">person</mat-icon>
+                <p>
+                  {{ dato.nombreRazonSocial }}
+                </p>
+              </div>
+              <div class="paragraph-flex">
+                <mat-icon matPrefix class="icon">fingerprint</mat-icon>
+                <p>
+                  {{ dato.rfc }}
+                </p>
+              </div>
+              <div class="paragraph-flex">
+                <mat-icon matPrefix class="icon card-no-public">person</mat-icon>
+                <p>
+                  {{ dato.tipoPersona }}
+                </p>
+              </div>
             </div>
           </div>
 
@@ -201,7 +203,11 @@
           </div>
 
           <!-- Tercero -->
-          <div class="grid-3-col grid-margin" formGroupName="tercero">
+          <div
+            class="grid-3-col grid-margin"
+            formGroupName="tercero"
+            *ngIf="bienesMueblesForm.value.bienMueble?.titular?.clave != 'DEC'"
+          >
             <mat-radio-group matTooltip="{{ tooltipData.tercero }}" class="checkbox" formControlName="tipoPersona">
               <p class="question double-col">Tercero</p>
               <mat-radio-button value="FISICA"><span class="no-public-inline"></span>Persona Física</mat-radio-button>

@@ -69,7 +69,8 @@ export class AdeudosComponent implements OnInit {
   }
 
   addItem() {
-    this.adeudosPasivosForm.reset();
+    //this.adeudosPasivosForm.reset();
+    this.createForm();
     this.adeudosPasivosForm.get('ninguno').setValue(false);
     this.editMode = true;
     this.editIndex = null;
@@ -104,7 +105,7 @@ export class AdeudosComponent implements OnInit {
           moneda: ['MXN', [Validators.pattern(/^\S.*\S?$/)]],
         }),
         tercero: this.formBuilder.group({
-          tipoPersona: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
+          tipoPersona: ['FISICA', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
           nombreRazonSocial: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
           rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
@@ -118,6 +119,33 @@ export class AdeudosComponent implements OnInit {
         }),
       }),
       aclaracionesObservaciones: [{ disabled: true, value: '' }, [Validators.required, Validators.pattern(/^\S.*\S$/)]],
+    });
+
+    ///////////////////////////// OMAR
+    this.adeudosPasivosForm.get('adeudo.titular').valueChanges.subscribe((val) => {
+      if (!val) return;
+
+      const razonSocial = this.adeudosPasivosForm.get('adeudo.tercero').get('nombreRazonSocial');
+      const tipoPersona = this.adeudosPasivosForm.get('adeudo.tercero').get('tipoPersona');
+      const rfc = this.adeudosPasivosForm.get('adeudo.tercero').get('rfc');
+
+      if (val.clave === 'DEC') {
+        razonSocial.clearValidators();
+        tipoPersona.clearValidators();
+        rfc.clearValidators();
+
+        razonSocial.setValue('');
+        rfc.setValue('');
+        tipoPersona.setValue('FISICA');
+      } else {
+        tipoPersona.setValidators([Validators.required]);
+        razonSocial.setValidators([Validators.required]);
+        rfc.setValidators([Validators.pattern(Constantes.VALIDACION_RFC), Validators.required]);
+      }
+
+      razonSocial.updateValueAndValidity();
+      rfc.updateValueAndValidity();
+      tipoPersona.updateValueAndValidity();
     });
   }
 

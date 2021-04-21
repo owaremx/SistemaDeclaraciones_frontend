@@ -18,6 +18,7 @@ import Sector from '@static/catalogos/sector.json';
 import { Beneficio, BeneficiosPrivados, DeclaracionOutput } from '@models/declaracion';
 
 import { findOption } from '@utils/utils';
+import { Constantes } from '@app/@shared/constantes';
 
 @Component({
   selector: 'app-beneficios-privados',
@@ -54,7 +55,8 @@ export class BeneficiosPrivadosComponent implements OnInit {
   }
 
   addItem() {
-    this.beneficiosPrivadosForm.reset();
+    //this.beneficiosPrivadosForm.reset();
+    this.createForm();
     this.editMode = true;
     this.editIndex = null;
   }
@@ -68,22 +70,14 @@ export class BeneficiosPrivadosComponent implements OnInit {
     this.beneficiosPrivadosForm = this.formBuilder.group({
       ninguno: [false],
       beneficio: this.formBuilder.group({
-        //tipoOperacion: ['', Validators.required],
-        tipoPersona: [''],
+        tipoOperacion: ['AGREGAR'],
+        //tipoPersona: ['', [Validators.required]],
         tipoBeneficio: ['', [Validators.required]], //
         beneficiario: ['', [Validators.required]],
         otorgante: this.formBuilder.group({
           tipoPersona: ['', [Validators.required]],
           nombreRazonSocial: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
-          rfc: [
-            '',
-            [
-              Validators.required,
-              Validators.pattern(
-                /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/i
-              ),
-            ],
-          ],
+          rfc: ['', [Validators.required, Validators.pattern(Constantes.VALIDACION_RFC)]],
         }),
         formaRecepcion: ['', Validators.required],
         especifiqueBeneficio: ['', [Validators.required, Validators.pattern(/^\S.*\S?$/)]],
@@ -223,7 +217,8 @@ export class BeneficiosPrivadosComponent implements OnInit {
   }
 
   setEditMode() {
-    this.beneficiosPrivadosForm.reset();
+    //this.beneficiosPrivadosForm.reset();
+    this.createForm();
     this.editMode = true;
     this.editIndex = null;
   }

@@ -53,7 +53,8 @@ export class ApoyosPublicosComponent implements OnInit {
   }
 
   addItem() {
-    this.apoyosForm.reset();
+    //this.apoyosForm.reset();
+    this.createForm();
     this.editMode = true;
     this.editIndex = null;
   }
@@ -209,7 +210,8 @@ export class ApoyosPublicosComponent implements OnInit {
   }
 
   setEditMode() {
-    this.apoyosForm.reset();
+    //this.apoyosForm.reset();
+    this.createForm();
     this.editMode = true;
     this.editIndex = null;
   }

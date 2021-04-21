@@ -976,7 +976,7 @@ export const beneficiosPrivadosQuery = gql`
         ninguno
         beneficio {
           tipoOperacion
-          tipoPersona
+          #tipoPersona OMAR: se quita porque el formulario no tiene estos campos
           tipoBeneficio {
             clave
             valor
@@ -992,7 +992,6 @@ export const beneficiosPrivadosQuery = gql`
           }
           formaRecepcion
           especifiqueBeneficio
-
           montoMensualAproximado {
             valor
             moneda
