@@ -84,6 +84,22 @@ export class ApoyosPublicosComponent implements OnInit {
       }),
       aclaracionesObservaciones: [{ disabled: true, value: '' }, [Validators.required, Validators.pattern(/^\S.*\S$/)]],
     });
+
+    ///////////////////////////// OMAR
+    this.apoyosForm.get('apoyo.formaRecepcion').valueChanges.subscribe((val) => {
+      if (!val) return;
+
+      const montoApoyo = this.apoyosForm.get('apoyo.montoApoyoMensual.valor');
+      const especifiqueApoyo = this.apoyosForm.get('apoyo.especifiqueApoyo');
+
+      if (val.clave === 'MONETARIO') {
+        montoApoyo.setValidators([Validators.required, Validators.pattern(/^\d+\.?\d{0,2}$/), Validators.min(0)]);
+        especifiqueApoyo.clearValidators();
+      } else {
+        montoApoyo.clearValidators();
+        especifiqueApoyo.setValidators([Validators.required, Validators.pattern(/^\S.*\S?$/)]);
+      }
+    });
   }
 
   editItem(index: number) {

@@ -181,12 +181,16 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field appearance="fill" formGroupName="montoApoyoMensual">
+          <mat-form-field
+            appearance="fill"
+            formGroupName="montoApoyoMensual"
+            *ngIf="apoyosForm.value.apoyo?.formaRecepcion == 'MONETARIO'"
+          >
             <mat-label>Monto aproximado del apoyo mensual</mat-label>
             <mat-icon matPrefix>beenhere</mat-icon>
             <input matInput type="number" formControlName="valor" min="0" />
           </mat-form-field>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" *ngIf="apoyosForm.value.apoyo?.formaRecepcion == 'ESPECIE'">
             <mat-label>Especifique el apoyo</mat-label>
             <mat-icon matPrefix>account_balance_wallet</mat-icon>
             <input matInput type="text" formControlName="especifiqueApoyo" />
