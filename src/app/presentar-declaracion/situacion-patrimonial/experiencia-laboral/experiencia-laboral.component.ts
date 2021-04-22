@@ -336,6 +336,7 @@ export class ExperienciaLaboralComponent implements OnInit {
       (this.declaracionSimplificada ? 'simplificada/' : '/') +
       'situacion-patrimonial/';
 
-    return base + 'ingresos-netos/';
+    if (this.declaracionSimplificada) return base + 'ingresos-netos/';
+    else return base + 'datos-pareja';
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Apollo } from 'apollo-angular';
 import { firmarDeclaracion } from '@api/declaracion';
@@ -26,15 +26,30 @@ enum tipoDeclaracion {
 export class SectionFooterComponent implements OnInit {
   @Input() declaracionId: string = null;
   tipoDeclaracion: string = null;
+  finalDeclaracion = false;
+  esSimplificada = false;
 
   constructor(
     private apollo: Apollo,
     private acuseService: AcuseService,
     private dialog: MatDialog,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private activatedRoute: ActivatedRoute
   ) {
     this.tipoDeclaracion = tipoDeclaracion[this.router.url.split('/')[1]];
+    this.esSimplificada = this.router.url.indexOf('simplificada') >= 0;
+
+    this.activatedRoute.url.subscribe((data) => {
+      console.log(data);
+      if (
+        (this.esSimplificada && data[0].path.indexOf('servidor-publico') >= 0) ||
+        data[0].path.indexOf('fideicomisos') >= 0
+      ) {
+        //llegó al final de la simplificada, habbilitar el botón
+        this.finalDeclaracion = true;
+      } else this.finalDeclaracion = false;
+    });
   }
 
   ngOnInit(): void {}
