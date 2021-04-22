@@ -1093,7 +1093,7 @@ export const participacionQuery = gql`
       participacion {
         ninguno
         participacion {
-          tipoOperacion
+          #tipoOperacion
           tipoRelacion
           nombreEmpresaSociedadAsociacion
           rfc
