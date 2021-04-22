@@ -374,7 +374,7 @@
     <!-- [routerLink]="'/' + tipoDeclaracion + '/situacion-patrimonial/datos-pareja'" -->
     <div class="boton center">
       <a mat-raised-button color="primary" [routerLink]="getLinkSiguiente()">
-        CONTINUAR 6 DE 15
+        CONTINUAR 6 DE {{ declaracionSimplificada ? '7' : '15' }}
         <mat-icon matSofix>arrow_forward</mat-icon>
       </a>
     </div>
