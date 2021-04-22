@@ -1,5 +1,5 @@
 .info-section {
-  background-color: var(--primary-lighter-color);
+  background-color: #666666;
   color: #ffffff;
   font-size: 14px;
   padding: 1em 0;
@@ -18,7 +18,7 @@
       position: relative;
     }
     .pdn-img {
-      max-width: 200px;
+      max-width: 300px;
     }
     .pdn-text {
       display: block;
@@ -60,4 +60,8 @@
 .primary-text {
   color: var(--primary-color);
   font-weight: bold;
+}
+
+.logo-inferior {
+  text-align: center;
 }

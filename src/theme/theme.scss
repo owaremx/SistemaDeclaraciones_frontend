@@ -17,13 +17,13 @@ body {
   flex-direction: column;
   margin: 0;
   height: 100%;
-  font-family: "Noto Sans";
+  font-family: "Noto Sans" Arial, Helvetica, sans-serif;
   font-size: 14px;
   min-width: 950px;
-  --primary-color: #cab87c;
-  --no-public-color: #c4a132;
+  --primary-color: #4b7338;
+  --no-public-color: #81a33b;
   --step-completed-color: #2b750b;
-  --progress-bar-color: rgb(127, 112, 63);
+  --progress-bar-color: #81a33b;
   --app-max-width: 1280px;
   --stepper-width: 290px;
 }

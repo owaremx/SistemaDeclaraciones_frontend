@@ -53,7 +53,14 @@ mat-expansion-panel-header {
   &.active {
     background-color: var(--primary-color);
     mat-panel-title {
-      color: var(--text-primary-color);
+      color: white;
+    }
+  }
+
+  &:hover {
+    color: white;
+    mat-panel-title {
+      color: white;
     }
   }
 }
