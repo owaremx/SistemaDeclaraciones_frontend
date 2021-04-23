@@ -3,7 +3,7 @@
   color: #ffffff;
   font-size: 14px;
   padding: 1em 0;
-  height: 550px;
+  height: 400px;
 
   mat-grid-list {
     width: 90%;
@@ -18,7 +18,7 @@
       position: relative;
     }
     .pdn-img {
-      max-width: 300px;
+      max-width: 85px;
     }
     .pdn-text {
       display: block;
@@ -64,4 +64,12 @@
 
 .logo-inferior {
   text-align: center;
+}
+.logos-abajo {
+  text-align: center;
+}
+.logos-abajo img {
+  display: inline-block;
+  height: 90px;
+  padding: 1em;
 }
